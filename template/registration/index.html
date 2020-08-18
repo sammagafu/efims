@@ -1,0 +1,184 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<body data-gr-c-s-loaded="true">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+
+                <div class="d-flex align-items-left">
+                    <button type="button" class="btn btn-sm mr-2 d-lg-none px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <div class="dropdown d-none d-sm-inline-block">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-plus"></i> Create New
+                            <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu">
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                User
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-right">
+
+                    <div class="dropdown d-none d-sm-inline-block ml-2">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-magnify"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block ml-2">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="{% static 'assets/images/users/avatar-3.jpg' %}" alt="Header Avatar">
+                            <span class="d-none d-sm-inline-block ml-1">{{user.username}}</span>
+                            <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                <span>Inbox</span>
+                                <span>
+                                    <span class="badge badge-pill badge-info">3</span>
+                                </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                <span>Profile</span>
+                                <span>
+                                    <span class="badge badge-pill badge-warning">1</span>
+                                </span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                Settings
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                <span>Lock Account</span>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="{% url 'logout' %}">
+                                <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu mm-active">
+
+            <div data-simplebar="init" class="h-100 mm-show"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: -15px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+
+                <div class="navbar-brand-box">
+                    <a href="index.html" class="logo">
+                        <img src="{% static 'assets/images/logo-light.png' %}">
+                    </a>
+                </div>
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu" class="mm-active">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                        <li class="menu-title">Menu</li>
+
+                        <li class="mm-active">
+                            <a href="{% url 'home' %}" class="waves-effect active"><i class="bx bx-home-smile"></i><span>Dashboard</span></a>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-file"></i><span>Balistic</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="pages-invoice.html">Open Case</a></li>
+                                <li><a href="pages-starter.html">Manage Case</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="mdi mdi-dna"></i><span>Biology / DNA</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="pages-invoice.html">Open Case</a></li>
+                                <li><a href="pages-starter.html">Manage Case</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 657px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 224px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="bx bx-layer float-right m-0 h2 text-muted"></i>
+                                    <h6 class="text-muted text-uppercase mt-0">Opened Cases</h6>
+                                    <h3 class="mb-3" data-plugin="counterup">1,587</h3>
+                                    <span class="badge badge-success mr-1"> +11% </span> <span class="text-muted">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="bx bx-dollar-circle float-right m-0 h2 text-muted"></i>
+                                    <h6 class="text-muted text-uppercase mt-0">Work On Progress</h6>
+                                    <h3 class="mb-3"><span data-plugin="counterup">46,782</span></h3>
+                                    <span class="badge badge-danger mr-1"> -29% </span> <span class="text-muted">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="bx bx-bx bx-analyse float-right m-0 h2 text-muted"></i>
+                                    <h6 class="text-muted text-uppercase mt-0">Completed Cases</h6>
+                                    <h3 class="mb-3">   <span data-plugin="counterup">15</span></h3>
+                                    <span class="badge badge-warning mr-1"> 0% </span> <span class="text-muted">From previous period</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+    <!-- Overlay-->
+    <div class="menu-overlay"></div>
+{% endblock content %}
+    
