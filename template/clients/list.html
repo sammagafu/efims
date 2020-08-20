@@ -1,0 +1,57 @@
+{% extends 'clients/base.html' %}
+{% load static %}
+{% block content %}
+<div id="layout-wrapper">
+    {% include 'include/navbar.html' %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Registered Clients
+                                </h4>
+                                <!-- <div class="dt-buttons btn-group">  <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> </div> -->
+                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>Region</th>
+                                            <th>IR</th>
+                                            <th>Case Type</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for client in client %}
+                                        <tr>
+                                            <td>{{ client.client }}</td>
+                                            <td>{{ client.region }}</td>
+                                            <td>{{ client.ir }}</td>
+                                            <td>{{client.casetype}}</td>
+                                            <td>{{client.status}}</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Edit</button>
+                                                    <a href="{{ client.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View</button></a>
+                                                    <button type="button" class="btn btn-danger waves-effect waves-light">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

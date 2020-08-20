@@ -1,0 +1,34 @@
+{% extends 'clients/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="layout-wrapper">
+    {% include 'include/navbar.html' %}
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container">
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Add New Client
+                                </h4>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    {{form | crispy}}
+                                    <div class="mb-3 text-center">
+                                        <button class="btn btn-primary btn-block" type="submit"> Create Client
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

@@ -1,0 +1,31 @@
+{% extends 'clients/base.html' %}
+{% load static %}
+{% block content %}
+<div id="layout-wrapper">
+    {% include 'include/navbar.html' %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Registered Clients Details
+                                </h4>
+                                <!-- <div class="dt-buttons btn-group">  <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> </div> -->
+                                <p>Clients Name : {{ client.client }}</p>
+                                <p>Clients Region or District: {{ client.region }}</p>
+                                <p>Clients IR: {{ client.ir }}</p>
+                                <p>Case Type: {{client.casetype}}</p>
+                                <p>Status: {{client.status}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
