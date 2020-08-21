@@ -30,12 +30,8 @@ class Ballistic(models.Model):
         """Unicode representation of Ballistic."""
         pass
 
-    def save(self):
-        """Save method for Ballistic."""
-        pass
-
     def get_absolute_url(self):
-        """Return absolute url for Ballistic."""
-        return ('')
+        from django.urls import reverse
+        return reverse('ballistic:details', args=[str(self.id)])
 
     # TODO: Define custom methods here

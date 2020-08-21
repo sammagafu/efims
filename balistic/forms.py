@@ -4,4 +4,4 @@ from . models import Ballistic
 class BallisticForm(ModelForm):
     class Meta:
         model = Ballistic
-        fields = '__all__'
+        fields = ['yourref','ourref','station','article','examination','addition','deliver']
