@@ -8,4 +8,10 @@ from . models import BiologyPF180,PoliceForm113
 
 class BiologyListView(LoginRequiredMixin,ListView):
     model = BiologyPF180
-    template_name = "dna/biology-list"
+    object_context_name = "dna"
+    template_name = "dna/biology-list.html"
+
+class BiologyDetail(LoginRequiredMixin,DetailView):
+    model = BiologyPF180
+    object_context_name = "dna"
+    template_name = "dna/biology-details.html"

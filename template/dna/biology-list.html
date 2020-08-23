@@ -1,0 +1,61 @@
+{% extends 'ballistic/base.html' %}
+{% load static %}
+{% block content %}
+<div id="layout-wrapper">
+    {% include 'include/navbar.html' %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Biology PF180 Clients
+                                </h4>
+                                <!-- <div class="dt-buttons btn-group">  <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> </div> -->
+                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>REF C F</th>
+                                            <th>Date Created</th>
+                                            <th>Exhibits in Case CF</th>
+                                            <th>United Republic V</th>
+                                            <th>The case will be held on</th>
+                                            <th>Receiving Officer</th>
+                                            <th>Delivering Officer</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for dna in dna %}
+                                        <tr>
+                                            <td>{{ dna.ref }}</td>
+                                            <td>{{ dna.date }}</td>
+                                            <td>{{ dna.casecf }}</td>
+                                            <td>{{dna.united}}</td>
+                                            <td>{{dna.venue}}</td>
+                                            <td>{{dna.receicer}}</td>
+                                            <td>{{dna.deliver}}</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Edit</button>
+                                                    <a href="{{ ballistic.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View</button></a>
+                                                    <button type="button" class="btn btn-danger waves-effect waves-light">Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

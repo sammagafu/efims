@@ -23,5 +23,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('',include('pages.urls')),
     path('ballistic/',include('balistic.urls')),
+    path('dna/',include('dna.urls')),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

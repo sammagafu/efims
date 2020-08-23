@@ -29,6 +29,10 @@ class BiologyPF180(models.Model):
         """Unicode representation of Biology."""
         return self.ref
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('dna:detail', kwargs={'pk': self.pk})
+
 class PoliceForm113(models.Model):
     """Model definition for PoliceForm114."""
     date = models.DateTimeField(verbose_name="date",auto_now_add=True)
