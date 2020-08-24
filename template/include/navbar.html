@@ -117,10 +117,10 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="mdi mdi-dna"></i><span>Biology / DNA</span></a>
                     <ul class="sub-menu mm-collapse" aria-expanded="false">
-                        <li><a href="pages-invoice.html">Biology F180 Form</a></li>
-                        <li><a href="pages-invoice.html">Police 113 Form</a></li>
-                        <li><a href="pages-starter.html">Manage F180 Case</a></li>
-                        <li><a href="{% url 'dna:list' %}">Manage Police 113 Case</a></li>
+                        <li><a href="{% url 'dna:create' %}">Biology F180 Form</a></li>
+                        <li><a href="{% url 'dna:list' %}">Manage F180 Case</a></li>
+                        <li><a href="{% url 'dna:police-create' %}">Police 113 Form</a></li>
+                        <li><a href="{% url 'dna:police-list' %}">Manage Police 113 Case</a></li>
                     </ul>
                 </li>
 
