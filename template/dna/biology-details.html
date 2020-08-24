@@ -11,17 +11,43 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    Biology PF180 Details
+                                    Tanzania Police Force
                                 </h4>
+                                <h6>P.F 180</h6>
+                                <hr>
                                 <!-- <div class="dt-buttons btn-group">  <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> </div> -->
-                                <p>Our Reference Number : {{ ballistic.ourref }}</p>
-                                <p>Your Reference Number: {{ ballistic.yourref }}</p>
-                                <p>Police Station: {{ ballistic.station }}</p>
-                                <p>Type of Examination: {{ballistic.examination}}</p>
-                                <p>Addtion Information / Remarks: {{ballistic.addition}}</p>
-                                <p>Receiving Officer : {{ballistic.receicer}}</p>
-                                <p>Delivering Officer : {{ballistic.deliver}}</p>
+                                <p>Ref.c.f : {{ dna.ref }}</p>
+                                <p>Officer in charge : {{dna.receicer}}</p>
+                                <p>Date : {{ dna.date }}</p>
+                                <h6>To: Forensic Investigation
+                                    <br>P O BOX 9094
+                                    <br>DAR ES SALAAM
+                                </h6>
+                                <p>Subject : Examination Exhibits in Case CF {{dna.casecf}}</p>
+                                <p>United Republic :v {{ dna.united }}</p>
+                                <p>I enclose/have forwarded in a separate registered parcel the exihibit enumerated on the reverse and I would
+                                    be grateful for tour early examination and report on the points raised in column 3.
+                                </p>
+                                <p>The case will be heard on <br> {{dna.venue}}</p>
+                                <p>Brief facts of the case are <br> {{dna.brief}}</p>
+                                <h6>The parcel bears. Seals with impression as in the sample fixed here to.</h6>
 
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Col 1 Exhibit Marked</th>
+                                                <th>Col 2 Description of exibit</th>
+                                                <th>Col 3 Points of which Opinions is required</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        
+                                                
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

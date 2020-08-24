@@ -30,7 +30,7 @@ class BiologyPF180(models.Model):
         return self.ref
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
+        from django.urls import reverse
         return reverse('dna:detail', kwargs={'pk': self.pk})
 
 class PoliceForm113(models.Model):
@@ -62,4 +62,8 @@ class PoliceForm113(models.Model):
 
     def __str__(self):
         """Unicode representation of PoliceForm114."""
-        pass
+        return self.brief
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('police-detail', kwargs={'pk': self.pk})

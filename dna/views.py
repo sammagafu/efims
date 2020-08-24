@@ -9,12 +9,12 @@ from . forms import BiologyPF180Form, Police113form
 
 class BiologyListView(LoginRequiredMixin,ListView):
     model = BiologyPF180
-    object_context_name = "dna"
+    context_object_name = "dna"
     template_name = "dna/biology-list.html"
 
 class BiologyDetail(LoginRequiredMixin,DetailView):
     model = BiologyPF180
-    object_context_name = "dna"
+    context_object_name = 'dna'
     template_name = "dna/biology-details.html"
 
 class BiologyCreate(LoginRequiredMixin,CreateView):
@@ -26,17 +26,17 @@ class BiologyCreate(LoginRequiredMixin,CreateView):
 
 class Policeform113List(LoginRequiredMixin,ListView):
     model = PoliceForm113
-    object_context_name = "dna"
+    context_object_name = "dna"
     template_name = "dna/police113-list.html"
 
 
 class Policeform113Detail(LoginRequiredMixin,DetailView):
     model = PoliceForm113
-    object_context_name = "dna"
+    context_object_name = "dna"
     template_name = "dna/police113-detail.html"
 
 class PoliceForm113Create(LoginRequiredMixin,CreateView):
     model = PoliceForm113
     form_class = Police113form
-    templale_name = "dna/police113-create.html"
+    template_name = "dna/police113-create.html"
     
