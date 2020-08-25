@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,DetailView,ListView
+from django.views.generic import CreateView,DetailView,ListView,DeleteView,UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . models import Ballistic
 from . forms import BallisticForm
@@ -24,3 +24,14 @@ class BallisticListView(LoginRequiredMixin,ListView):
     context_object_name = 'cases'
     model = Ballistic
     template_name = "ballistic/list.html"
+
+
+class BallisticDeleteView(DeleteView):
+    model = Ballistic
+    success_url = "/ballistic"
+    template_name = "ballistic/delete.html"
+
+class BallisticUpdate(UpdateView):
+    form_class = BallisticForm
+    model = Ballistic
+    template_name = "ballistic/update.html"

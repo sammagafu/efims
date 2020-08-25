@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,CreateView,ListView,DetailView
+from django.views.generic import TemplateView,CreateView,ListView,DetailView,DeleteView,UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from . forms import ClientForm
@@ -24,3 +24,14 @@ class ClientDetail(LoginRequiredMixin,DetailView):
     model = Client
     context_object_name = 'client'
     template_name ="clients/detail.html"
+
+class ClientDeleteView(DeleteView):
+    model = Client
+    success_url = "/client"
+    template_name = "clients/delete.html"
+
+
+class ClientUpdateView(UpdateView):
+    form_class = ClientForm
+    model = Client
+    template_name = "clients/update.html"

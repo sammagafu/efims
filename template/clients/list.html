@@ -36,9 +36,9 @@
                                             <td>{{client.status}}</td>
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Edit</button>
+                                                    <a href="{% url 'update-client' client.pk %}"><button type="button" class="btn btn-warning waves-effect waves-light">Edit</button></a>
                                                     <a href="{{ client.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View</button></a>
-                                                    <button type="button" class="btn btn-danger waves-effect waves-light">Delete</button>
+                                                    <a href="{% url 'delete-client' client.pk %}"><button type="button" class="btn btn-danger waves-effect waves-light">Delete</button></a>
                                                 </div>
                                             </td>
                                         </tr>

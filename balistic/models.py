@@ -27,8 +27,7 @@ class Ballistic(models.Model):
         verbose_name_plural = 'Ballistics'
 
     def __str__(self):
-        """Unicode representation of Ballistic."""
-        pass
+        return self.ourref
 
     def get_absolute_url(self):
         from django.urls import reverse
