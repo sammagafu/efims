@@ -1,4 +1,5 @@
 {% load static %}
+{% load ballistic_tags %}
 <header id="page-topbar">
     <div class="navbar-header">
 
@@ -89,8 +90,29 @@
         </div>
 
         <!--- Sidemenu -->
+        {% if request.user|has_group:"Ballistic" %}
+        {% else %}
+        {% endif %}
         <div id="sidebar-menu" class="mm-active">
             <!-- Left Menu Start -->
+            
+            {% if request.user|has_group:"Ballistic"%}
+            <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                <li class="menu-title">Menu</li>
+
+                <li class="mm-active">
+                    <a href="{% url 'home' %}" class="waves-effect active"><i class="bx bx-home-smile"></i><span>Ballistic Dashboard</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-file"></i><span>Balistic</span></a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <!-- <li><a href="{% url 'ballistic:home' %}">Create Ballistic Case</a></li> -->
+                        <li><a href="{% url 'ballistic:list' %}">Manage Case</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% elif request.user|has_group:"Secretary" %}
             <ul class="metismenu list-unstyled mm-show" id="side-menu">
                 <li class="menu-title">Menu</li>
 
@@ -125,7 +147,53 @@
                 </li>
 
             </ul>
+            {% elif request.user|has_group:"Biology-dna" %}
+            <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                <li class="menu-title">Menu</li>
+
+                <li class="mm-active">
+                    <a href="{% url 'home' %}" class="waves-effect active"><i class="bx bx-home-smile"></i><span>Biology or DNA  Dashboard</span></a>
+                </li>
+    
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="mdi mdi-dna"></i><span>Biology / DNA</span></a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <!-- <li><a href="{% url 'dna:create' %}">Biology F180 Form</a></li> -->
+                        <li><a href="{% url 'dna:list' %}">Manage F180 Case</a></li>
+                        <!-- <li><a href="{% url 'dna:police-create' %}">Police 113 Form</a></li> -->
+                        <li><a href="{% url 'dna:police-list' %}">Manage Police 113 Case</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            {% elif request.user|has_group:"Management"%}
+            <ul class="metismenu list-unstyled mm-show" id="side-menu">
+                <li class="menu-title">Menu</li>
+
+                <li class="mm-active">
+                    <a href="{% url 'home' %}" class="waves-effect active"><i class="bx bx-home-smile"></i><span>Management Dashboard</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-file"></i><span>Balistic</span></a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <li><a href="{% url 'ballistic:list' %}">Manage Case</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="mdi mdi-dna"></i><span>Biology / DNA</span></a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                        <!-- <li><a href="{% url 'dna:create' %}">Biology F180 Form</a></li> -->
+                        <li><a href="{% url 'dna:list' %}">Manage F180 Case</a></li>
+                        <!-- <li><a href="{% url 'dna:police-create' %}">Police 113 Form</a></li> -->
+                        <li><a href="{% url 'dna:police-list' %}">Manage Police 113 Case</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% endif %}
+                
         </div>
-        <!-- Sidebar -->
+        <!-- Sidebar  -->
     </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 657px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 224px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div>
 </div>
