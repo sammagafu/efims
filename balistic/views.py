@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,DetailView,ListView,DeleteView,UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from . models import Ballistic
-from . forms import BallisticForm
+from . models import Ballistic,BallisticReport
+from . forms import BallisticForm,BallisticReportForm
 # Create your views here.
 
 class CreateCase(LoginRequiredMixin,CreateView):
@@ -18,6 +18,32 @@ class BallisticDetailView(LoginRequiredMixin,DetailView):
     model = Ballistic
     object_context_name = "ballistic"
     template_name = "ballistic/detail.html"
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(BallisticDetailView, self).get_context_data(**kwargs)
+        context['form'] = BallisticReportForm
+        context['id'] = self.get_object()
+        return context
+
+    def get_initial(self):
+        return {'case':self.object.pk,'approved':self.request.user}
+
+class ReportCreate(CreateView):
+    model = BallisticReport
+    form_class = BallisticReportForm
+
+    def get_success_url(self):
+        from django.urls import reverse
+        return reverse('ballistic:details',kwargs={'pk': self.object.case.pk})
+
+    def form_valid(self, form):
+        form.instance.approved = self.request.user
+        # form.instance.case = self.object
+        return super().form_valid(form)
+    
+
+
 
 
 class BallisticListView(LoginRequiredMixin,ListView):

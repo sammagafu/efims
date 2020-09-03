@@ -1,5 +1,6 @@
 {% extends 'ballistic/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div id="layout-wrapper">
     {% include 'include/navbar.html' %}
@@ -21,9 +22,30 @@
                                 <p>Addtion Information / Remarks: {{ballistic.addition}}</p>
                                 <p>Receiving Officer : {{ballistic.receicer}}</p>
                                 <p>Delivering Officer : {{ballistic.deliver}}</p>
-
+                                <!-- <p>{{ ballistic.id }}</p> -->
                             </div>
                         </div>
+
+                
+
+                            
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Form Report {{ballistic}}
+                                </h4>
+                                <form action="{% url 'ballistic:report' %}" method="POST">
+                                    {% csrf_token %}
+                                    {{form | crispy}}
+                                    <div class="mb-3 text-center">
+                                        <input type="hidden" name="case_id" value="{{id}}">
+                                        <button class="btn btn-primary btn-block" type="submit"> Create Report 
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
