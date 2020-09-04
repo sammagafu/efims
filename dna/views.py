@@ -67,18 +67,18 @@ class PoliceForm113Create(LoginRequiredMixin,CreateView):
     form_class = Police113form
     template_name = "dna/police113-create.html"
 
-class PoliceFormUpdateView(UpdateView):
+class PoliceFormUpdateView(LoginRequiredMixin,UpdateView):
     form_class = Police113form
     model = PoliceForm113
     template_name = "dna/updatepf180.html"
 
 
-class PoliceFormDeleteView(DeleteView):
+class PoliceFormDeleteView(LoginRequiredMixin,DeleteView):
     success_url = "dna/police113"
     model = PoliceForm113
     template_name = "dna/deletepf180.html"
 
-class ReportCreate113(CreateView):
+class ReportCreate113(LoginRequiredMixin,CreateView):
     model = PoliceForm113Report
     form_class = Police113ReportForm
 
@@ -90,7 +90,7 @@ class ReportCreate113(CreateView):
         form.instance.approved = self.request.user
         return super().form_valid(form)
 
-class ReportCreate180(CreateView):
+class ReportCreate180(LoginRequiredMixin,CreateView):
     model = BiologyPF180Report
     form_class = BiologyPF180ReportForm
 

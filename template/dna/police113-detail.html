@@ -1,5 +1,6 @@
 {% extends 'ballistic/base.html' %}
 {% load crispy_forms_tags %}
+{% load ballistic_tags %}
 
 {% load static %}
 {% block content %}
@@ -31,13 +32,13 @@
                             </div>
                         </div>
 
-
+                        {% if not report and request.user|has_group:"Biology-dna" %}
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    Form Report {{dna.ref}}
+                                    Form Report {{ballistic}}
                                 </h4>
-                                <form action="{% url 'dna:police-report' %}" method="POST">
+                                <form action="{% url 'ballistic:report' %}" method="POST">
                                     {% csrf_token %}
                                     {{form | crispy}}
                                     <div class="mb-3 text-center">
@@ -48,7 +49,21 @@
                                 </form>
                             </div>
                         </div>
-
+                        {% else %}
+                        <div class="card">
+                            <div class="card-body">
+            
+                                    {% for report in report %}
+                                    <h4 class="card-title">Form For Case {{report.case}}</h4>
+                                    <br>
+                                    <p>{{ report.report }}</p>
+                                    <br>
+                                    <p>Checked By {{ report.approved }}</p>
+                                    {% endfor %}    
+                                        
+                            </div>
+                        </div>
+                        {% endif %}
 
                     </div>
                 </div>
