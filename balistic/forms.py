@@ -11,4 +11,4 @@ class BallisticReportForm(ModelForm):
     
     class Meta:
         model = BallisticReport
-        fields = ['report']
+        fields = ['case','report']

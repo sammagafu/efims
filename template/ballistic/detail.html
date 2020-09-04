@@ -1,6 +1,7 @@
 {% extends 'ballistic/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load ballistic_tags %}
 {% block content %}
 <div id="layout-wrapper">
     {% include 'include/navbar.html' %}
@@ -25,26 +26,39 @@
                                 <!-- <p>{{ ballistic.id }}</p> -->
                             </div>
                         </div>
-
-                
-
                             
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    Form Report {{ballistic}}
-                                </h4>
-                                <form action="{% url 'ballistic:report' %}" method="POST">
-                                    {% csrf_token %}
-                                    {{form | crispy}}
-                                    <div class="mb-3 text-center">
-                                        <input type="hidden" name="case_id" value="{{id}}">
-                                        <button class="btn btn-primary btn-block" type="submit"> Create Report 
-                                        </button>
-                                    </div>
-                                </form>
+                            {% if not report and request.user|has_group:"Ballistic" %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        Form Report {{ballistic}}
+                                    </h4>
+                                    <form action="{% url 'ballistic:report' %}" method="POST">
+                                        {% csrf_token %}
+                                        {{form | crispy}}
+                                        <div class="mb-3 text-center">
+                                            <input type="hidden" name="case_id" value="{{id}}">
+                                            <button class="btn btn-primary btn-block" type="submit"> Create Report 
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                            {% else %}
+                            <div class="card">
+                                <div class="card-body">
+                
+                                        {% for report in report %}
+                                        <h4 class="card-title">Form For Case {{report.case}}</h4>
+                                        <br>
+                                        <p>{{ report.report }}</p>
+                                        <br>
+                                        <p>Checked By {{ report.approved }}</p>
+                                        {% endfor %}    
+                                            
+                                </div>
+                            </div>
+                            {% endif %}
 
                     </div>
                 </div>

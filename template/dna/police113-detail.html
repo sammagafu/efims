@@ -1,0 +1,59 @@
+{% extends 'ballistic/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block content %}
+<div id="layout-wrapper">
+    {% include 'include/navbar.html' %}
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Tanzania Police Force
+                                </h4>
+                                <h6>Police 113 Case no</h6>
+                                <hr>
+                                <!-- <div class="dt-buttons btn-group">  <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="datatable-buttons" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="datatable-buttons" type="button"><span>PDF</span></button> </div> -->
+                                <p>Police Station : {{ dna.Station }}</p>
+                                <p>Officer in charge : {{dna.receicer}}</p>
+                                <p>Date : {{ dna.date }}</p>
+                                <p>Correspondence in : {{ dna.correspondin }}</p>
+                                <p>Correspondence Out : {{ dna.correspondout }}</p>
+                                <p>Articles Received : {{ dna.articles }}</p>
+                                <p>Articles Returned : {{ dna.articlesrtn }}</p>
+                                <p>Brief Particulars of Case : {{ dna.brief }}</p>
+                                <p>Purpose Of Examination : {{ dna.purpose }}</p>
+                        
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Form Report {{dna.ref}}
+                                </h4>
+                                <form action="{% url 'ballistic:report' %}" method="POST">
+                                    {% csrf_token %}
+                                    {{form | crispy}}
+                                    <div class="mb-3 text-center">
+                                        <input type="hidden" name="case_id" value="{{id}}">
+                                        <button class="btn btn-primary btn-block" type="submit"> Create Report 
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

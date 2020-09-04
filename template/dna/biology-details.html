@@ -1,4 +1,6 @@
 {% extends 'ballistic/base.html' %}
+{% load crispy_forms_tags %}
+
 {% load static %}
 {% block content %}
 <div id="layout-wrapper">
@@ -42,14 +44,36 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                        
-                                                
+                                            <tr>
+                                                <td>{{ dna.exihibit_marked }}</td>
+                                                <td>{{ dna.exihibit_description }}</td>
+                                                <td>{{ dna.points }}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    Form Report {{dna.ref}}
+                                </h4>
+                                <form action="{% url 'ballistic:report' %}" method="POST">
+                                    {% csrf_token %}
+                                    {{form | crispy}}
+                                    <div class="mb-3 text-center">
+                                        <input type="hidden" name="case_id" value="{{id}}">
+                                        <button class="btn btn-primary btn-block" type="submit"> Create Report 
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

@@ -17,13 +17,13 @@
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th>REF C F</th>
-                                            <th>Date Created</th>
-                                            <th>Exhibits in Case CF</th>
-                                            <th>United Republic V</th>
-                                            <th>The case will be held on</th>
-                                            <th>Receiving Officer</th>
-                                            <th>Delivering Officer</th>
+                                            <th>Date</th>
+                                            <th>Station</th>
+                                            <th>Receiver</th>
+                                            <th>Corresponding In</th>
+                                            <th>Corresponding Out</th>
+                                            <th>Brief</th>
+                                            <th>Eximiner</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -31,18 +31,17 @@
                                         
                                         {% for dna in dna %}
                                         <tr>
-                                            <td>{{ dna.ref }}</td>
                                             <td>{{ dna.date }}</td>
-                                            <td>{{ dna.casecf }}</td>
-                                            <td>{{dna.united}}</td>
-                                            <td>{{dna.venue}}</td>
-                                            <td>{{dna.receicer}}</td>
-                                            <td>{{dna.deliver}}</td>
+                                            <td>{{ dna.Station }}</td>
+                                            <td>{{ dna.receicer }}</td>
+                                            <td>{{dna.correspondin}}</td>
+                                            <td>{{dna.correspondout}}</td>
+                                            <td>{{dna.brief}}</td>
+                                            <td>{{dna.eximiner}}</td>
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                                     <a href="{% url 'dna:police-update' dna.pk %}"><button type="button" class="btn btn-warning waves-effect waves-light">Edit</button></a>
-                                                    <a href="{{ ballistic.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View</button></a>
-                                                    <a href=""><button type="button" class="btn btn-danger waves-effect waves-light">Report</button></a>
+                                                    <a href="{{ dna.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View</button></a>
                                                 </div>
                                             </td>
                                         </tr>

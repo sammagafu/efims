@@ -33,6 +33,24 @@ class BiologyPF180(models.Model):
         from django.urls import reverse
         return reverse('dna:detail', kwargs={'pk': self.pk})
 
+class BiologyPF180Report(models.Model):
+    case = models.OneToOneField(BiologyPF180,on_delete=models.CASCADE,related_name="biologyCase",verbose_name="case")
+    report = models.TextField()
+    approved = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name="research",verbose_name="approved by")
+
+
+    class Meta:
+        verbose_name = "Biology or DNA PF180 Report"
+        verbose_name_plural ="Biology or DNA PF180 Reports"
+
+    def __str__(self):
+        return self.report
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("dna:detail", kwargs={"pk": self.case})
+
+
 class PoliceForm113(models.Model):
     """Model definition for PoliceForm114."""
     date = models.DateTimeField(verbose_name="date",auto_now_add=True)
@@ -66,4 +84,21 @@ class PoliceForm113(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('police-detail', kwargs={'pk': self.pk})
+        return reverse('dna:police-detail', kwargs={'pk': self.pk})
+
+class PoliceForm113Report(models.Model):
+    case = models.OneToOneField(PoliceForm113,on_delete=models.CASCADE,related_name="policeform",verbose_name="case")
+    report = models.TextField()
+    approved = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name="approved",verbose_name="approved by")
+
+
+    class Meta:
+        verbose_name = "Police Form 113'Report"
+        verbose_name_plural ="Police Form 113 Reports"
+
+    def __str__(self):
+        return self.report
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("police-detail:detail", kwargs={"pk": self.case})

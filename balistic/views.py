@@ -23,7 +23,7 @@ class BallisticDetailView(LoginRequiredMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super(BallisticDetailView, self).get_context_data(**kwargs)
         context['form'] = BallisticReportForm
-        context['id'] = self.get_object()
+        context['report'] = BallisticReport.objects.filter(case=self.get_object())
         return context
 
     def get_initial(self):
@@ -39,7 +39,6 @@ class ReportCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.approved = self.request.user
-        # form.instance.case = self.object
         return super().form_valid(form)
     
 

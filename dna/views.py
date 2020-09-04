@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,DetailView,ListView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from . models import BiologyPF180,PoliceForm113
-from . forms import BiologyPF180Form, Police113form
+from . models import BiologyPF180,PoliceForm113,BiologyPF180Report,PoliceForm113Report
+from . forms import BiologyPF180Form, Police113form,BiologyPF180ReportForm,Police113ReportForm
 
 
 # Create your views here.
@@ -16,6 +16,13 @@ class BiologyDetail(LoginRequiredMixin,DetailView):
     model = BiologyPF180
     context_object_name = 'dna'
     template_name = "dna/biology-details.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = BiologyPF180ReportForm
+        context['report'] = BiologyPF180Report.objects.filter(case=self.get_object())
+        return context
+    
 
 class BiologyCreate(LoginRequiredMixin,CreateView):
     model = BiologyPF180
@@ -47,6 +54,13 @@ class Policeform113Detail(LoginRequiredMixin,DetailView):
     model = PoliceForm113
     context_object_name = "dna"
     template_name = "dna/police113-detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = Police113ReportForm
+        context['report'] = PoliceForm113Report.objects.filter(case=self.get_object())
+        return context
+
 
 class PoliceForm113Create(LoginRequiredMixin,CreateView):
     model = PoliceForm113
