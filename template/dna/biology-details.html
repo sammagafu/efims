@@ -61,7 +61,7 @@
                                 <h4 class="card-title">
                                     Form Report {{dna.ref}}
                                 </h4>
-                                <form action="{% url 'ballistic:report' %}" method="POST">
+                                <form action="{% url 'dna:report' %}" method="POST">
                                     {% csrf_token %}
                                     {{form | crispy}}
                                     <div class="mb-3 text-center">

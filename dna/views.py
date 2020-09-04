@@ -77,3 +77,27 @@ class PoliceFormDeleteView(DeleteView):
     success_url = "dna/police113"
     model = PoliceForm113
     template_name = "dna/deletepf180.html"
+
+class ReportCreate113(CreateView):
+    model = PoliceForm113Report
+    form_class = Police113ReportForm
+
+    def get_success_url(self):
+        from django.urls import reverse
+        return reverse('dna:police-detail',kwargs={'pk': self.object.case.pk})
+
+    def form_valid(self, form):
+        form.instance.approved = self.request.user
+        return super().form_valid(form)
+
+class ReportCreate180(CreateView):
+    model = BiologyPF180Report
+    form_class = BiologyPF180ReportForm
+
+    def get_success_url(self):
+        from django.urls import reverse
+        return reverse('dna:detail',kwargs={'pk': self.object.case.pk})
+
+    def form_valid(self, form):
+        form.instance.approved = self.request.user
+        return super().form_valid(form)
