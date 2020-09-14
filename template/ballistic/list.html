@@ -1,6 +1,8 @@
 {% extends 'ballistic/base.html' %}
 {% load static %}
+{% load ballistic_tags %}
 {% block content %}
+
 <div id="layout-wrapper">
     {% include 'include/navbar.html' %}
     <div class="main-content">
@@ -38,12 +40,21 @@
                                             <td>{{ballistic.received_date}}</td>
                                             <td>{{ballistic.receicer}}</td>
                                             <td>{{ballistic.deliver}}</td>
+                                            {% if request.user|has_group:"Ballistic" %}
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                                                     <a href="{% url 'ballistic:update' ballistic.pk %}"><button type="button" class="btn btn-warning waves-effect waves-light">Edit</button></a>
                                                     <a href="{{ ballistic.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View </button></a>
                                                 </div>
                                             </td>
+                                            {% elif request.user|has_group:"Management" %}
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                                                    <a href="{{ ballistic.get_absolute_url }}"><button type="button" class="btn btn-success waves-effect waves-light">Approve Report</button></a>
+                                                    <a href="{{ ballistic.get_absolute_url }}"><button type="button" class="btn btn-sucess waves-effect waves-light">View </button></a>
+                                                </div>
+                                            </td>
+                                            {% endif %}
                                         </tr>
                                         {% endfor %}
                                             

@@ -53,9 +53,10 @@
                                         <br>
                                         <p>{{ report.report }}</p>
                                         <br>
-                                        <p>Checked By {{ report.approved }}</p>
-                                        {% endfor %}    
-                                            
+                                        <p>Checked By {{ report.approved }}</p> 
+                                        {% endfor %}   
+                                        <a href="{% url 'ballistic:approve' ballistic.pk %}" class="btn btn-success btn-block">Approve Report</a>
+                                        
                                 </div>
                             </div>
                             {% endif %}

@@ -36,7 +36,10 @@ class BiologyPF180(models.Model):
 class BiologyPF180Report(models.Model):
     case = models.OneToOneField(BiologyPF180,on_delete=models.CASCADE,related_name="biologyCase",verbose_name="case")
     report = models.TextField()
-    approved = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name="research",verbose_name="approved by")
+    approved = models.OneToOneField('auth.User',on_delete=models.CASCADE,related_name="research",verbose_name="approved by")
+    approve  = models.BooleanField(default=False)
+    reported_by = models.OneToOneField('auth.User',on_delete=models.CASCADE,related_name="reporter",verbose_name="approved by",null=True,blank=True)
+
 
 
     class Meta:
@@ -89,7 +92,9 @@ class PoliceForm113(models.Model):
 class PoliceForm113Report(models.Model):
     case = models.OneToOneField(PoliceForm113,on_delete=models.CASCADE,related_name="policeform",verbose_name="case")
     report = models.TextField()
-    approved = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name="approved",verbose_name="approved by")
+    reported_by = models.OneToOneField('auth.User',on_delete=models.CASCADE,related_name="reported_by",verbose_name="approved by")
+    approve  = models.BooleanField(default=False)
+    approved = models.OneToOneField('auth.User',on_delete=models.CASCADE,related_name="approved",verbose_name="approved by")
 
 
     class Meta:

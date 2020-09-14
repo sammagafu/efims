@@ -5,6 +5,7 @@ app_name = 'dna'
 urlpatterns = [
     path('biology/', views.BiologyListView.as_view(), name='list'),
     path('biology/<int:pk>', views.BiologyDetail.as_view(), name='detail'),
+    path('biology/report/<int:pk>', views.ApporvePF180.as_view(), name='report'),
     path('biology/create', views.BiologyCreate.as_view(), name='create'),
     path('biology/report/create', views.ReportCreate180.as_view(), name='report'),
     path('biology/<int:pk>/delete', views.BiologyDeleteView.as_view(), name='dna-delete'),
@@ -15,6 +16,7 @@ urlpatterns = [
     path('police113/<int:pk>',views.Policeform113Detail.as_view(),name="police-detail"),
     path('police113/create',views.PoliceForm113Create.as_view(),name="police-create"),
     path('police113/report/create',views.ReportCreate113.as_view(),name="police-report"),
+    path('police113/report/<int:pk>', views.ApprovePolice113.as_view(), name='report_p'),
     path('police113/<int:pk>/delete', views.BiologyDeleteView.as_view(), name='police-delete'),
     path('police113/<int:pk>/update', views.BiologyUpdateView.as_view(), name='police-update'),
 ]

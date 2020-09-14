@@ -39,7 +39,10 @@ class Ballistic(models.Model):
 class BallisticReport(models.Model):
     case = models.OneToOneField(Ballistic,on_delete=models.CASCADE,related_name="case",verbose_name="case")
     report = models.TextField()
-    approved = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name="approval",verbose_name="approved by")
+    # approved = models.ForeignKey('auth.User',on_delete=models.CASCADE,related_name="approval",verbose_name="approved by")
+    reported_by = models.OneToOneField('auth.User',on_delete=models.CASCADE,related_name="officer_report",verbose_name="reported by")
+    approve  = models.BooleanField(default=False)
+    approved = models.OneToOneField('auth.User',on_delete=models.CASCADE,related_name="officer_approval",verbose_name="approved by",null=True,blank=True)
 
 
     class Meta:

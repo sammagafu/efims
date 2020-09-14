@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,DetailView,ListView,UpdateView,DeleteView
+from django.views.generic import CreateView,DetailView,ListView,UpdateView,DeleteView,RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . models import BiologyPF180,PoliceForm113,BiologyPF180Report,PoliceForm113Report
 from . forms import BiologyPF180Form, Police113form,BiologyPF180ReportForm,Police113ReportForm
+from django.shortcuts import get_object_or_404
+
 
 
 # Create your views here.
@@ -101,3 +103,30 @@ class ReportCreate180(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.approved = self.request.user
         return super().form_valid(form)
+
+class ApporvePF180(RedirectView):
+    permanent = False
+    query_string = True
+    pattern_name = 'dna:detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        report = get_object_or_404(BiologyPF180Report, pk=kwargs['pk'])
+        report.approve = True
+        report.approved = self.request.user
+        report.save()
+        return super().get_redirect_url(*args, **kwargs)
+
+
+
+class ApprovePolice113(RedirectView):
+    permanent = False
+    query_string = True
+    pattern_name = 'dna:police-detail'
+
+    def get_redirect_url(self, *args, **kwargs):
+        report = get_object_or_404(PoliceForm113Report, pk=kwargs['pk'])
+        report.update(approve=True,reported_by=self.request.user)
+        report.approve = True
+        report.approved = self.request.user
+        report.save()
+        return super().get_redirect_url(*args, **kwargs)
